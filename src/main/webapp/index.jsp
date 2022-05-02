@@ -1,79 +1,184 @@
+<%@ page import="com.google.appengine.api.blobstore.BlobstoreServiceFactory" %>
+<%@ page import="com.google.appengine.api.blobstore.BlobstoreService" %>
+
+<%
+    BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+%>
+
+
 <!DOCTYPE html>
 <html>
-<head>
-<title>Facebook Login JavaScript Example</title>
-<meta charset="UTF-8">
-</head>
-<body>
-<script>
-  function statusChangeCallback(response) {  // Called with the results from FB.getLoginStatus().
-    console.log('statusChangeCallback');
-    console.log(response);                   // The current login status of the person.
-    if (response.status === 'connected') {   // Logged into your webpage and Facebook.
-      testAPI();  
-    } else {                                 // Not logged into your webpage or we are unable to tell.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this webpage.';
-    }
-  }
-  
-  function test(){
-	  FB.login(function()
-	{   FB.api('/me/feed', 'post', {message: 'Hello, world!'});  }, {scope: 'publish_actions'});
-	  document.getElementById('status').innerHTML = 'The publish_actions permission was deprecated and removed'
-	  + ' 3 years ago now. <br>Im not going to spend the time to look for an alternative to a 3 years outdated assignment that should be up to date.<br>'
-	  + 'see <a href="https://developers.facebook.com/blog/post/2018/04/24/new-facebook-platform-product-changes-policy-updates/">this link</a>'
-	  + ' under Facebook Login section for details.';
-  }
-  function checkLoginState() {               // Called when a person is finished with the Login Button.
-    FB.getLoginStatus(function(response) {   // See the onlogin handler
-      statusChangeCallback(response);
-    });
-  }
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '657925941938704',
-      cookie     : true,                     // Enable cookies to allow the server to access the session.
-      xfbml      : true,                     // Parse social plugins on this webpage.
-      version    : 'v13.0'           // Use this Graph API version for this call.
-    });
-    FB.getLoginStatus(function(response) {   // Called after the JS SDK has been initialized.
-      statusChangeCallback(response);        // Returns the login status.
-    });
-    
-  };
- 
-  function testAPI() {                      // Testing Graph API after login.  See statusChangeCallback() for when this call is made.
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', {fields: 'name,email,last_name,first_name,birthday,gender'}, function(response) {
-      console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!<br>'
-        + 'Step 1: '+ '<br>'
-        + 'Email: ' + response.email + '<br>'
-        + 'First: ' + response.first_name + '<br>'
-        + 'Last: ' + response.last_name + '<br><br>'
-        + 'Step 4: ' + '<br>'
-        + 'Birthday: ' + response.birthday + '<br>'
-        + 'Gender: ' + response.gender;
-    });
-  }
-</script>
 
+	<head>
+		<title>Facebook Login JavaScript Example</title>
+		<meta charset="UTF-8">
+	</head>
 
-<!-- The JS SDK Login Button -->
+	<body>
 
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
+		<script>
+			// This is called with the results from FB.getLoginStatus().
+			function statusChangeCallback(response) {
+				console.log('statusChangeCallback');
+				console.log(response);
+				// The response object is returned with a status field that lets the
+				// app know the current login status of the person.
+				// Full docs on the response object can be found in the documentation
+				// for FB.getLoginStatus().
+				if (response.status === "connected") {
+					// Logged into your app and Facebook.
+					var authResponse = response.authResponse;
+					var accessToken = authResponse.accessToken;
+					//response.addCookie("accessToken",accessToken);
+					console.log(accessToken)
+					//Cookie at = new Cookie("accessToken", accessToken);
+					//response.addCookie(at);
+					//response.sendRedirect("https://fbapp-348423.appspot.com/home.jsp");
+					testAPI();
+					console.log(response);
+					/* var authResponse = response.authResponse;
+					var accessToken = authResponse.accessToken;
+					console.log(accessToken)
+					sesson.setAttribute("accessToken", accessToken) */
+					
+					
+				} else {
+					// The person is not logged into your app or we are unable to tell.
+					document.getElementById('status').innerHTML = 'Please log ' +
+						'into this app.';
+				}
+			}
 
-<div id="status">
-</div>
+			// This function is called when someone finishes with the Login
+			// Button.  See the onlogin handler attached to it in the sample
+			// code below.
+			function checkLoginState() {
+				FB.getLoginStatus(function (response) {
+					statusChangeCallback(response);
+					console.log(response);
+					var authResponse = response.authResponse;
+					var accessToken = authResponse.accessToken;
+					console.log(accessToken)
+					session.setAttribute("accessToken", accessToken)
+				});
+			}
 
-<br>
-Step 3:
-<button onclick="test()">Publish_Actions was deprecated 3 years ago</button>
+			window.fbAsyncInit = function () {
+				FB.init({
+					appId: '988483798473577',
+					cookie: true,  // enable cookies to allow the server to access
+								   // the session
+					xfbml: true,  // parse social plugins on this page
+					version: 'v13.0' // Specify the Graph API version to use
+				});
+				FB.AppEvents.logPageView();
 
-<!-- Load the JS SDK asynchronously -->
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
-</body>
+				FB.getLoginStatus(function (response) {
+					statusChangeCallback(response);
+				});
+
+			};
+
+			// Load the SDK asynchronously
+			(function (d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) return;
+				js = d.createElement(s);
+				js.id = id;
+				js.src = "https://connect.facebook.net/en_US/sdk.js";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+
+			// Here we run a very simple test of the Graph API after login is
+			// successful.  See statusChangeCallback() for when this call is made.
+			function testAPI() {
+				console.log('Welcome!  Fetching your information.... ');
+				FB.api("/me", function (response) {
+					console.log(response);
+					
+					console.log('Successful login for: ' + response.name);
+					document.getElementById('status').innerHTML =
+						'Thanks for logging in, ' + response.name + '!';
+				});
+				//List<String> listURL = new ArrayList<String>();
+				//List<String> listID = new ArrayList<String>();
+				FB.api("/me?fields=albums{photos{link,images}}", function (response) {
+
+					var albums = response["albums"]["data"];
+					var imageLinks = new Array();
+		            var imageID = new Array();
+		            
+					console.log(albums);
+					for (var i =0; i< albums.length; i++){
+						var albumId = albums[i]["id"]
+						var photos = albums[i]["photos"]["data"]
+						for( var j = 0; j < photos.length; j++){
+							var id = photos[j]["id"]
+							var link = photos[j]["link"]
+							var image = photos[j]["images"]
+							var url = image[6]["source"]
+							
+							//var img = document.createElement("img");
+							var img = new Image();
+							img.src = url;
+							
+							//listID.add(id);
+							//listURL.add(url);
+							//InputStream in = new URL(url).openStream();
+				            //Files.copy(in, Paths.get(id + ".jpg"));
+				            imageLinks.push(url)
+                            imageID.push(id)
+							document.getElementById('status').appendChild(img);
+				            
+						}
+						
+					}
+					console.log(imageID);
+	                console.log(imageLinks);
+	                //session.setAttribute("imageID", imageID)
+	                //session.setAttribute("imageLinks", imageLinks)
+	                var url_val = document.getElementById('url_val')
+	                var id_val = document.getElementById('id_val')
+	                url_val.value = imageLinks
+	                id_val.value = imageID
+				});
+			}
+			
+
+			function logout() {
+				FB.logout(function (response) {
+					location.reload(true);
+				});
+			}
+			
+
+		</script>
+
+		<!--
+		  Below we include the Login Button social plugin. This button uses
+		  the JavaScript SDK to present a graphical Login button that triggers
+		  the FB.login() function when clicked.
+		-->
+
+		<fb:login-button scope="public_profile,email,user_photos" onlogin="checkLoginState();"></fb:login-button>
+		
+		<!-- <form action="<%= blobstoreService.createUploadUrl("/Result") %>" method="post" enctype="multipart/form-data">
+            <input type="submit" name = "result" value="Upload">
+        </form> -->
+        
+        <form action="/Result" method="post">
+        	<input type ="hidden" name="url" id = "url_val" value="")>
+        	<input type ="hidden" name="id" id = "id_val" value="")>
+            <input type="submit" name = "result" value="Upload">
+            
+        </form>
+
+		<div id="status"></div>
+		<button type="button" onclick="logout()">Logout</button>
+		<!--  <form action="/ImageSharing" method="POST">
+					<input type="button" name= "accessToken" value=accessToken /> -->
+		
+    	</form>
+	</body>
+
 </html>
