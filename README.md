@@ -11,8 +11,6 @@ For this project, we have created an application which allows the user to upload
 ### Description
 ### Demonstration of Application working
 ### GAE Issues and GAE Datastore
-### Java Code Documentation
-
 ### Analytics Project 1 Proposal
 
 #
