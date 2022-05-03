@@ -40,6 +40,3 @@ The application will be able to access the photos of users on his/her Facebook p
 ![screenshot image](screenshots/a12.PNG)
 ![screenshot image](screenshots/a13.PNG)
 ![screenshot image](screenshots/a14.PNG)
-
-
-![screenshot image](screenshots/a1.PNG)
