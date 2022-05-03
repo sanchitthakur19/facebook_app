@@ -64,11 +64,21 @@ public class Result extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		/**
+		 * This method takes 2 parameters HttpServletRequest request, HttpServletResponse response
+		 * this is auto generated method
+		 */
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		/**
+		 * This method get the parameters from HttpServletRequest 
+		 * and checks if image url and id is already present in datastore
+		 * if it is not present in datastore it will send the image to cloud vision
+		 * google cloud vision will return the lables and the labels, id and url is then added to datastore
+		 */
 
 		PrintWriter op = response.getWriter();
 
@@ -192,13 +202,18 @@ public class Result extends HttpServlet {
 
 	public static void addImageDetailsToDataStore(String url, String labels, String imageId, DatastoreService
             datastore) {
-        Entity User_Images = new Entity("User_Images");
+        /**
+         * This function takes the url, label, id and datastore as parameters
+         * then the entity of the datastore is accessed and then the property of the datastore is being set 
+         * and the data is put on the datastore
+         */
+		Entity User_Images = new Entity("User_Images");
         User_Images.setProperty("image_id", imageId);
         User_Images.setProperty("image_url", url);
         User_Images.setProperty("labels", labels);
         datastore.put(User_Images);
     }
-
+/*
     private void getImageFromStore(HttpServletRequest request, HttpServletResponse response, DatastoreService datastore, String imageId) {
 
         Query query =
@@ -229,9 +244,13 @@ public class Result extends HttpServlet {
         }
 
     }
-
+*/
     public static boolean checkIfImageExists(DatastoreService datastore, String imageId) {
-        Query q =
+        /**
+         * This function takes datastore and image id as parameters and check if the image is already present in datastore
+         * and it return True or false 
+         */
+    	Query q =
                 new Query("User_Images")
                         .setFilter(new Query.FilterPredicate("image_id", Query.FilterOperator.EQUAL, imageId));
         PreparedQuery pq = datastore.prepare(q);
@@ -243,6 +262,9 @@ public class Result extends HttpServlet {
     }
 
 	private static byte[] downloadFile(URL url) throws Exception {
+		/**
+		 * this function takes url as input and converts it into byte array and returns it
+		 */
         try{
         	
         	InputStream in = url.openStream();
@@ -299,6 +321,10 @@ public class Result extends HttpServlet {
         return bytes;*/
     }
     private static List<EntityAnnotation> getImageLabels(String imageUrl) {
+    	/**
+    	 * this function takes url of image as parameter and sends it to google cloud vision
+    	 * to fetch the labels of the image and returns it
+    	 */
         try {
             byte[] imgBytes = downloadFile(new URL(imageUrl));
         	//byte[] imgBytes = downloadFile(imageUrl);

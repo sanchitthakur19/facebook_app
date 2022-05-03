@@ -39,6 +39,10 @@ public class Search extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/**
+		 * this function accepts HttpServletRequest request, HttpServletResponse response as parameter and
+		 * uses the search label to search the label to search and fetch images that has the same label and sends the url to the jsp file
+		 */
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		/*String searchLabel = request.getParameter("searchLabel");
@@ -90,12 +94,19 @@ public class Search extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+		/**
+		 * This method takes 2 parameters HttpServletRequest request, HttpServletResponse response
+		 * this is auto generated method
+		 */
 		String searchLabel = request.getParameter("searchLabel");
 		PrintWriter op = response.getWriter();
 		op.print(searchLabel);
 	}
 	private ArrayList<String> getImageFromStore(HttpServletRequest request, HttpServletResponse response, DatastoreService datastore, String imageId) {
-
+		/**
+		 * This function takes HttpServletRequest request, HttpServletResponse response, DatastoreService datastore, String label as parameters
+		 * and it is used to fetch the all the image url from datastore that has the same label
+		 */
         Query query =
                 new Query("User_Images")
                         .setFilter(new Query.FilterPredicate("labels", Query.FilterOperator.EQUAL, imageId));
