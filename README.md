@@ -4,6 +4,7 @@
 For this project, we have created an application which allows the user to upload images from Facebook for search and get suggestions by using a tool called the Graph API. After the Images are uploaded the images are sent to Google Cloud Vision to analyze the uploaded images dn return the labels for the images and these labels are used for searching the images. The uploaded images are stored in Google Datastore. The searched images can be shared on facebook.
 
 ## Application Link: https://fbapp-348423.uc.r.appspot.com/
+## Youtube Link: https://youtu.be/WEI3tWHLTWw
 
 ## Table of contents:
 ### Proposal
@@ -36,27 +37,36 @@ This class will display all the images that are being fetched and it directs to 
 #
 ## Demonstration of Application working
 ### Homepage
+This is our hoepage
 ![screenshot image](screenshots/a1.PNG)
 
 ### Facebook Logged In
-
+Confirmation message is received once you have been successfully logged in to the server
 ![screenshot image](screenshots/a2.PNG)
 
 ### Search Bar 
-to search the image tags for relevant image 
+To search the image tags for relevant image 
 
 ![screenshot image](screenshots/a3.PNG)
 ![screenshot image](screenshots/a4.PNG)
 ### Image retrieved by the keyword
-
+Image that is fetched from the datastore by the keyword though which you're trying to search the image
 ![screenshot image](screenshots/a5.PNG)
 
-### Share image on Facebook
-
+### Post image on Facebook
+Image can be posted on the face through the share button
 ![screenshot image](screenshots/a6.PNG)
 
 ### Shared image on Facebook
+Example of the posted image on Facebook
 ![screenshot image](screenshots/a7.PNG)
+
+
+### Facebook Project
+![screenshot image](screenshots/a12.PNG)
+#
+## GAE Issues and GAE Datastore
+
 ### Google Project
 ![screenshot image](screenshots/a11.PNG)
 ### Image on Google Datastore
@@ -66,10 +76,6 @@ to search the image tags for relevant image
 ### Gooogle Cloud Vision
 ![screenshot image](screenshots/a10.PNG)
 
-### Facebook Project
-![screenshot image](screenshots/a12.PNG)
-#
-## GAE Issues and GAE Datastore
 #
 ## Java Code Documentation
 #
