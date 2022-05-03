@@ -80,9 +80,7 @@ example when we tried search for car and bike in the same image the application 
 ### Gooogle Cloud Vision
 ![screenshot image](screenshots/a10.PNG)
 
-#
-## Java Code Documentation
-#
+
 
 
 #
