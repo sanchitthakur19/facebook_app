@@ -5,17 +5,18 @@
     BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
 %>
 
-
 <!DOCTYPE html>
 <html>
 
 	<head>
-		<title>Facebook Login JavaScript Example</title>
-		<meta charset="UTF-8">
-	</head>
+    <meta charset="UTF-8">
+    <title>Facebook</title>
+    <link type="text/css" rel="stylesheet" href="stylesheets/main.css" />
+	
+</head>
 
-	<body>
-
+	<body BGCOLOR="lightblue">
+		<h1 ALIGN="CENTER">Companion App</h1>
 		<script>
 			// This is called with the results from FB.getLoginStatus().
 			function statusChangeCallback(response) {
@@ -43,9 +44,9 @@
 					
 					
 				} else {
-					// The person is not logged into your app or we are unable to tell.
-					document.getElementById('status').innerHTML = 'Please log ' +
-						'into this app.';
+					//The person is not logged into your app or we are unable to tell.
+					/* document.getElementById('status').innerHTML = 'Please log ' +
+						'into this app.'; */
 				}
 			}
 
@@ -128,7 +129,7 @@
 				            //Files.copy(in, Paths.get(id + ".jpg"));
 				            imageLinks.push(url)
                             imageID.push(id)
-							document.getElementById('status').appendChild(img);
+							//document.getElementById('status').appendChild(img);
 				            
 						}
 						
@@ -144,7 +145,6 @@
 				});
 			}
 			
-
 			function logout() {
 				FB.logout(function (response) {
 					location.reload(true);
@@ -154,39 +154,37 @@
 
 		</script>
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-9E7CKGNNYW"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-9E7CKGNNYW');
-</script>
-
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		
+		  gtag('config', 'G-9E7CKGNNYW');
+		</script>
+		
 		<!--
 		  Below we include the Login Button social plugin. This button uses
 		  the JavaScript SDK to present a graphical Login button that triggers
 		  the FB.login() function when clicked.
 		-->
-
-		<fb:login-button scope="public_profile,email,user_photos" onlogin="checkLoginState();"></fb:login-button>
 		
-		<!-- <form action="<%= blobstoreService.createUploadUrl("/Result") %>" method="post" enctype="multipart/form-data">
-            <input type="submit" name = "result" value="Upload">
-        </form> -->
-        
-        <form action="/Result" method="post">
-        	<input type ="hidden" name="url" id = "url_val" value="")>
-        	<input type ="hidden" name="id" id = "id_val" value="")>
-            <input type="submit" name = "result" value="Upload">
-            
-        </form>
-
-		<div id="status"></div>
-		<button type="button" onclick="logout()">Logout</button>
-		<!--  <form action="/ImageSharing" method="POST">
-					<input type="button" name= "accessToken" value=accessToken /> -->
+		<div style="margin: auto; width:12%;">
+			
+			<fb:login-button scope="public_profile,email,user_photos" onlogin="checkLoginState();"></fb:login-button>
+			
+	        <form action="/Result" method="post">
+	        	
+	        	<input type ="hidden" name="url" id = "url_val" value="")>
+	        	<input type ="hidden" name="id" id = "id_val" value="")>
+	        	<div style="margin-top: 2rem;">
+	        		<input type="submit" name = "result" value="Upload">
+	        	</div>
+	        	
+	        </form>
+	        
+	        <div style="margin-top: 2%;" id="status"></div>
 		
-    	</form>
+		</div>
+		
 	</body>
-
 </html>

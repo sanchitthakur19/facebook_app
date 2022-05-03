@@ -7,13 +7,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body>
+<body bgcolor="lightblue">
 	
-	<form onsubmit="">
-		<div id="imgDiv">
-			
-		</div>
-	</form>
+	<div style="width: 70%; margin:auto;">
+	<h3>Result</h3>
+		<form onsubmit="">
+			<div id="imgDiv">
+				
+			</div>
+		</form>
+	</div>
+	
 	<script>
 	   var imgString = "${urllist}";
 	   
@@ -24,8 +28,7 @@
 	   var imgDiv = document.getElementById("imgDiv");
 	   
 	   for(var a=0; a<list.length; a++){
-		  /*  var form = document.createElement('form');
-		   form.id = 'imgform'+a; */
+		  
 		   var br1 = document.createElement('br');
 		   imgDiv.appendChild(br1);
 		   var img = document.createElement('img');
@@ -34,7 +37,7 @@
 		   var imgID ='img'+a
 		   var imgSrc = list[a];
 		   img.id = imgID;
-		   img.style = '"margin-vertical: 1rem"';
+		   img.style.margin = "1rem";
 		   
 		   var br2 = document.createElement('br');
 		   imgDiv.appendChild(br2);
@@ -53,36 +56,30 @@
 			    //window.open ('http://www.facebook.com/sharer.php?u='+finalURL,'','width=500, height=500, scrollbars=yes, resizable=no');
 			    window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(imgURL),'sharer','toolbar=0,status=0,width=626,height=436');
 		   };
+		   
 		   input.value = "Share on Facebook";
-		   /*var divVar = document.createElement('div');
-		   //divVar.class = "fb-share-button"
-		   divVar.data-href = "https://developers.facebook.com/docs/plugins/";
-		   divVar.type="button";
-		   //divVar.data-size="large";
-		   var a = document.createElement('a');
-		   a.target="_blank" ;
-		   a.href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" ;
-		   //a.class="fb-xfbml-parse-ignore";
-		   imgDiv.appendChild(a);
-		   imgDiv.appendChild(divVar);*/
-		   /////
+		   input.style.margin = "1.5rem";
 		   imgDiv.appendChild(img);
 		   imgDiv.appendChild(input);
-		   //imgDiv.appendChild(form);
+		   
 		   var br3 = document.createElement('br');
 		   imgDiv.appendChild(br3);
 	   }
-	   
 	</script>
+	
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-9E7CKGNNYW"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-9E7CKGNNYW');
-</script>
+	
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-9E7CKGNNYW');
+	</script>
+	
 	<div id="fb-root"></div>
-	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v13.0&appId=988483798473577&autoLogAppEvents=1" nonce="91e8CQ5N"></script>
+	
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v13.0&appId=988483798473577&autoLogAppEvents=1" nonce="91e8CQ5N">
+	</script>
 </body>
 </html>

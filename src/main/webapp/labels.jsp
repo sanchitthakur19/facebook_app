@@ -44,13 +44,15 @@ form.example::after {
 }
 </style>
 </head>
-<body>
-
-
-<form class="example" action="/Search" style="margin:auto;max-width:300px">
-  <input type="text" placeholder="Search.." name="searchLabel" value = "">
-  <button type="submit"><i class="fa fa-search"></i></button>
-</form>
-
+<body bgcolor="lightblue">
+		
+	<div style="width: 30%; margin: auto; padding-top: 10rem;">
+		<h3>Search for the image</h3>	
+		<form class="example" action="/Search" style="max-width:300px">
+		  <input type="text" placeholder="Search.." name="searchLabel" value = "">
+		  <button type="submit"><i class="fa fa-search"></i></button>
+		</form>
+	</div>
+	
 </body>
 </html> 
