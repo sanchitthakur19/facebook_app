@@ -11,8 +11,6 @@ For this project, we have created an application which allows the user to upload
 ### Description
 ### Demonstration of Application working
 ### GAE Issues and GAE Datastore
-### Java Code Documentation
-### Code
 ### Analytics Project 1 Proposal
 
 #
@@ -66,6 +64,10 @@ Example of the posted image on Facebook
 ![screenshot image](screenshots/a12.PNG)
 #
 ## GAE Issues and GAE Datastore
+#
+### Issues faced:
+We were unable to use multiple labels for searching the image.
+example when we tried search for car and bike in the same image the application was crashing.
 
 ### Google Project
 ![screenshot image](screenshots/a11.PNG)
@@ -76,10 +78,10 @@ Example of the posted image on Facebook
 ### Gooogle Cloud Vision
 ![screenshot image](screenshots/a10.PNG)
 
-#
-## Java Code Documentation
-#
-## Code
+
+
+
 #
 ## Analytics Project 1 Proposal
+![screenshot image](screenshots/a13.PNG)
 
