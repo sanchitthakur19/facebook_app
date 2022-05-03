@@ -24,3 +24,22 @@ The application will retrieve a Facebook photo from the user’s Facebook profil
 The result then will be used for Google Analytics Platform (App Engine Server Side Analytics) as it provides computing resources to collect, store, process, and report on these user-interactions to detect objects and start creating clusters of the object based on the similarity of the object to the reference object for image classification.
 
 The application will be able to access the photos of users on his/her Facebook profile using the Facebook Graph API which is the primary way for the application to read and write to the Facebook Social Graph then the photos will be stored in Google DataStore. The Google VisionAI will be used to extrapolate data from photos to detect the objects and will return appropriate labels with respect to the image. Image object detection information will be used to classify the image. After extrapolation we will store the extrapolated data on the Google DataStore to fetch instantaneous data when called again in future and for further data analytics and exploration.
+
+
+![screenshot image](screenshots/a1.PNG)
+![screenshot image](screenshots/a2.PNG)
+![screenshot image](screenshots/a3.PNG)
+![screenshot image](screenshots/a4.PNG)
+![screenshot image](screenshots/a5.PNG)
+![screenshot image](screenshots/a6.PNG)
+![screenshot image](screenshots/a7.PNG)
+![screenshot image](screenshots/a8.PNG)
+![screenshot image](screenshots/a9.PNG)
+![screenshot image](screenshots/a10.PNG)
+![screenshot image](screenshots/a11.PNG)
+![screenshot image](screenshots/a12.PNG)
+![screenshot image](screenshots/a13.PNG)
+![screenshot image](screenshots/a14.PNG)
+
+
+![screenshot image](screenshots/a1.PNG)
