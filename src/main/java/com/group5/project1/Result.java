@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import javax.imageio.ImageIO;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -65,10 +66,7 @@ public class Result extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -123,9 +121,7 @@ public class Result extends HttpServlet {
 		                    addImageDetailsToDataStore(url, lable, FbPhotoId, datastore);
 		                    //getImageFromStore(request, response, datastore, FbPhotoId);
 		                }
-						/*
-						 * for(String str : lables){ op.println(str); }
-						 */
+						
 		            }
 		        }else{
 		            //getImageFromStore(request, response, datastore, FbPhotoId);
@@ -146,11 +142,26 @@ public class Result extends HttpServlet {
 		        }
 			}
 			for(String str : listlable){ op.println(str); }
-			request.setAttribute("labelList", listlable);
+			String[] arrList = new String[listlable.size()];
+			for (int i = 0; i <listlable.size();i++ ) {
+				arrList[i] = listlable.get(i);
+			}
+			//request.setAttribute("labelList", arrList);
 			RequestDispatcher dispatcher = getServletContext()
                     .getRequestDispatcher("/labels.jsp");
 			
-            dispatcher.forward(request, response);
+			try {
+				dispatcher.forward(request, response);
+			} catch (ServletException e) {
+				// TODO Auto-generated catch block
+				op.print("Error:"+e);
+				e.printStackTrace();
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				op.print("Error:"+e);
+				e.printStackTrace();
+			}
             
 			 
 		} catch (Exception e) {
